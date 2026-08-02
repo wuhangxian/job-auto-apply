@@ -1,0 +1,100 @@
+# 求职 Agent 配置
+# 复制为 config.yaml 后填入你的真实信息。config.yaml 已被 .gitignore 排除。
+
+# === AI 网关 ===
+ai:
+  # OpenAI 兼容的网关地址
+  base_url: "https://api.model.haihub.cn/v1"
+  # API Key
+  api_key: ""
+  # 用于评分和投递决策的模型（支持 GLM、DeepSeek 等）
+  model: "GLM-5.2-TokenHub"
+
+# === 个人信息 ===
+# 这些文件已存在于 career-ops 中，直接引用路径即可
+profile:
+  cv_md: "../cv.md"                    # Markdown 简历
+  resume_pdf: "/data/home/dorianwu/whx-study/吴航先_简历0720（修）.pdf"  # PDF 附件
+  profile_yml: "../config/profile.yml"  # 个人信息（姓名/电话/邮箱/教育/目标岗位等）
+  application_profile: "../config/private-application-profile.md"  # 网申隐私字段（身份证号等）
+  voice_dna: "../voice-dna.md"          # AI 写作风格 DNA
+
+# === 信息源 ===
+sources:
+  # 腾讯文档：填 Token 后自动读取 SmartSheet 岗位表
+  tencent_docs:
+    enabled: true
+    token: ""
+    file_ids:
+      - "DRHVEc05MbE5CYUZa"  # 你的校招 SmartSheet
+    tables: []  # 留空 = 读所有可见表
+
+  # Boss 直聘：填 token 后自动搜索匹配岗位
+  boss:
+    enabled: false
+    # Cookie 中的 wt2 或 zp_token 值
+    token: ""
+    keywords:
+      - "AI Infra"
+      - "大模型推理"
+      - "C++ 后端"
+    cities: ["合肥", "南京", "杭州", "上海", "深圳", "北京"]
+    max_results: 50
+
+  # 猎聘：填 cookie 后自动搜索
+  liepin:
+    enabled: false
+    cookie: ""
+    keywords:
+      - "AI Infra"
+      - "LLM Serving"
+    cities: ["合肥", "南京", "杭州", "上海"]
+    max_results: 30
+
+  # 通用网页采集：给关键词，爬招聘聚合页
+  web:
+    enabled: false
+    keywords:
+      - "2027届 AI Infra 校招"
+      - "大模型推理工程师 校招"
+
+# === 评分规则 ===
+scoring:
+  # 低于此分数的岗位不展示
+  min_score: 60
+  weights:
+    match: 35        # 技能/经验匹配度
+    growth: 15       # 行业前景与成长性
+    location: 20     # 地点偏好
+    stability: 15    # 公司稳定性（非互联网大厂加分）
+    salary: 15       # 薪资竞争力
+  # 城市偏好权重
+  city_priority: ["合肥", "南京", "杭州", "上海", "深圳", "北京", "广州"]
+  # 偏好的行业类型（加分）
+  preferred_industries:
+    - 制造业
+    - 智能汽车
+    - 机器人
+    - 半导体
+    - 工业 AI
+    - 国央企科技
+    - 金融科技
+  # 排除项
+  exclude_companies: []  # 不想投的公司名
+
+# === 自动投递 ===
+auto_apply:
+  enabled: false       # true = 找到匹配岗位后自动填表，提交前等你审核
+  # 投递前必须人工确认
+  require_review: true
+  # 每次最多自动投递多少个（防止触发风控）
+  batch_size: 5
+  # 投递间隔（秒），防止触发风控
+  interval_seconds: 30
+
+# === 输出 ===
+output:
+  # 岗位报告输出目录
+  reports_dir: "../reports/agent"
+  # 数据库（跟踪投递状态）
+  database: "../data/agent.db"

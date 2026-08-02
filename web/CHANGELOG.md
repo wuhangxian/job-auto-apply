@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/wuhangxian/job-auto-apply/compare/web-v0.3.0...web-v0.4.0) (2026-08-02)
+
+
+### Features
+
+* job agent with AI scoring and browser auto-apply ([f28b8db](https://github.com/wuhangxian/job-auto-apply/commit/f28b8dbf86fa4b8cb2da11888f8a6d01f11e9522))
+
 ## [0.3.0](https://github.com/santifer/career-ops/compare/web-v0.2.0...web-v0.3.0) (2026-07-07)
 
 

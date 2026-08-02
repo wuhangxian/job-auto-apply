@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.22.0](https://github.com/wuhangxian/job-auto-apply/compare/career-ops-v1.21.0...career-ops-v1.22.0) (2026-08-02)
+
+
+### Features
+
+* job agent with AI scoring and browser auto-apply ([f28b8db](https://github.com/wuhangxian/job-auto-apply/commit/f28b8dbf86fa4b8cb2da11888f8a6d01f11e9522))
+
 ## [1.21.0](https://github.com/santifer/career-ops/compare/career-ops-v1.20.0...career-ops-v1.21.0) (2026-07-17)
 
 
